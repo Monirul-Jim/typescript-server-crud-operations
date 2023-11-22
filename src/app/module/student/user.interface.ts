@@ -3,7 +3,7 @@ type Order = {
   price: number;
   quantity: number;
 };
-type UserOrder = {
+export type UserOrderSchema = {
   userId: string;
   userName: string;
   password: string;
