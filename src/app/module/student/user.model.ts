@@ -1,5 +1,5 @@
-import { Schema, model } from "mongoose";
-import { UserOrderSchema } from "./user.interface";
+import { Schema, model } from 'mongoose'
+import { UserOrderSchema } from './user.interface'
 const userSchema = new Schema<UserOrderSchema>({
   userId: { type: String, required: true, unique: true },
   userName: { type: String, required: true, unique: true },
@@ -24,5 +24,5 @@ const userSchema = new Schema<UserOrderSchema>({
       quantity: { type: Number, required: true },
     },
   ],
-});
-export const UserModel = model<UserOrderSchema>("UserOrderSchema", userSchema);
+})
+export const UserModel = model<UserOrderSchema>('UserOrderSchema', userSchema)
