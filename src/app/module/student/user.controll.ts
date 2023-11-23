@@ -39,33 +39,67 @@ const getUserInoByUserId = async (req: Request, res: Response) => {
     console.log(error)
   }
 }
-const deleteOneUserInfo = async (req: Request, res: Response) => {
+
+const deleteUserController = async (req: Request, res: Response) => {
   try {
     const { userId } = req.params
-    const result = await userCreate.deleteUserFromDb(userId)
+    await userCreate.deleteUser(userId)
     res.status(200).json({
       success: true,
-      message: 'get single user by userId successfully!',
-      data: result,
+      message: 'User deleted successfully!',
+      data: null,
     })
   } catch (error) {
-    console.log(error)
+    res.status(404).json({
+      success: false,
+      message: 'unable delete user',
+    })
   }
 }
-const updateOneUserInfo = async (req: Request, res: Response) => {
+// const deleteOneUserInfo = async (req: Request, res: Response) => {
+//   try {
+//     const { userId } = req.params
+//     const result = await userCreate.deleteUserFromDb(userId)
+//     res.status(200).json({
+//       success: true,
+//       message: 'get single user by userId successfully!',
+//       data: result,
+//     })
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
+export const updateUserInfoController = async (req: Request, res: Response) => {
   try {
     const { userId } = req.params
-    const { updatedData } = req.body
-    const result = await userCreate.updateUserInfo(userId, updatedData)
+    const updatedData = req.body
+    const updatedUser = await userCreate.updateUserInfo(userId, updatedData)
     res.status(200).json({
       success: true,
-      message: 'update user info successfully!',
-      data: result,
+      message: 'User updated successfully!',
+      data: updatedUser,
     })
   } catch (error) {
-    console.log(error)
+    res.status(404).json({
+      success: false,
+      message: ' unable to update data',
+    })
   }
 }
+// const updateOneUserInfo = async (req: Request, res: Response) => {
+//   try {
+//     const { userId } = req.params
+//     const { updatedData } = req.body
+//     const result = await userCreate.updateUserInfo(userId, updatedData)
+//     res.status(200).json({
+//       success: true,
+//       message: 'update user info successfully!',
+//       data: result,
+//     })
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
 const getOrdersByUserId = async (req: Request, res: Response) => {
   try {
     const { userId } = req.params
@@ -95,16 +129,35 @@ const getTotalPriceFromOrder = async (req: Request, res: Response) => {
   } catch (error) {
     res.status(404).json({
       success: false,
-      message: 'Total price calculated successfully!',
+      message: 'unable to calculate price !',
     })
   }
 }
+// const addProductToOrdersController = async (req: Request, res: Response) => {
+//   try {
+//     const { userId } = req.params
+//     const newProduct = req.body
+//     const orders = await userCreate.addProductToOrders(userId, newProduct)
+//     res.status(200).json({
+//       success: true,
+//       message: 'Product added to orders successfully!',
+//       data: orders,
+//     })
+//   } catch (error) {
+//     res.status(404).json({
+//       success: false,
+//       message: 'Fatal error: Unable to add your product',
+//     })
+//   }
+// }
 export const StudentController = {
   createUserInfo,
   getAllUserInfoDb,
   getUserInoByUserId,
-  deleteOneUserInfo,
-  updateOneUserInfo,
+  deleteUserController,
+  // deleteOneUserInfo,
+  updateUserInfoController,
   getOrdersByUserId,
   getTotalPriceFromOrder,
+  // addProductToOrdersController,
 }
