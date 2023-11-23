@@ -6,7 +6,7 @@ const createUserInfoIntoDb = async (userOrderPlace: UserOrderSchema) => {
   return result
 }
 const getAllUserInfo = async () => {
-  const result = await UserModel.find()
+  const result = await UserModel.find().select('-password')
   return result
 }
 const getUserInfoById = async (id: string) => {
