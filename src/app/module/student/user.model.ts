@@ -24,5 +24,9 @@ const userSchema = new Schema<UserOrderSchema>({
       quantity: { type: Number, required: true },
     },
   ],
+  isDeleted: {
+    type: Boolean,
+    default: false,
+  },
 })
 export const UserModel = model<UserOrderSchema>('UserOrderSchema', userSchema)

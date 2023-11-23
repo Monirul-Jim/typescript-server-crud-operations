@@ -21,4 +21,5 @@ export type UserOrderSchema = {
     country: string
   }
   orders: Order[]
+  isDeleted: boolean
 }
